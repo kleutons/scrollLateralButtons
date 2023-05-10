@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      display: flex;
+      height: 50px;
+      width: 600px;
+    }
+    
+    .content {
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
+    
+    .text {
+      display: inline-block;
+      padding: 10px;
+    }
+    
+    .button {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(214, 214, 214, 0.5);
+      color: #000;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .button:hover {
+      background-color: rgba(145, 145, 145, 0.5);
+    }
+    
+    .button.left {
+      left: 10px;
+      display: none;
+    }
+    
+    .button.right {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="button left">&lt;</button>
+    <div class="content">
+      <div class="text">
+        -- Seu conteúdo grande aqui --   -- Seu conteúdo grande aqui --
+        -- Seu conteúdo grande aqui --        -- Seu conteúdo grande aqui --    -- Seu conteúdo grande aqui --
+        -- Seu conteúdo grande aqui --  -- Seu conteúdo grande aqui --
+        -- Seu conteúdo grande aqui --  -- Seu conteúdo grande aqui --
+      </div>
+    </div>
+    <button class="button right">&gt;</button>
+  </div>
+
+  <script>
+    var content = document.querySelector('.content');
+    var leftButton = document.querySelector('.button.left');
+    var rightButton = document.querySelector('.button.right');
+
+    var scrollStep = 500; // Valor em pixels para cada clique no botão de scroll
+
+    content.addEventListener('scroll', function() {
+      if (content.scrollLeft > 0) {
+        leftButton.style.display = 'block';
+      } else {
+        leftButton.style.display = 'none';
+      }
+
+      if (content.scrollLeft < (content.scrollWidth - content.clientWidth - 1)) {
+        rightButton.style.display = 'block';
+      } else {
+        rightButton.style.display = 'none';
+      }
+    });
+
+    leftButton.addEventListener('click', function() {
+      content.scrollLeft -= scrollStep;
+    });
+
+    rightButton.addEventListener('click', function() {
+      content.scrollLeft += scrollStep;
+    });
+  </script>
+</body>
+</html>
